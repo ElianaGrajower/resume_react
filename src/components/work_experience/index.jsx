@@ -19,7 +19,6 @@ export default function WorkExperience({handleChange}) {
     };
 
     useEffect(() => {
-        console.log(workExp);
         handleChange({ ['workExperience']: workExp }, 'workExperience');
     }, [workExp])
 

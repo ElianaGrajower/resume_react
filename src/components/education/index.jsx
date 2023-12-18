@@ -18,7 +18,6 @@ export default function Education({handleChange}) {
     };
 
     useEffect(() => {
-        console.log(edu);
         handleChange({ ['education']: edu }, 'education');
     }, [edu])
 

@@ -9,7 +9,6 @@ export default function FullName({handleChange}) {
     };
 
     useEffect(() => {
-        console.log(fullName);
         handleChange({ fullName: fullName }, 'fullName');
     }, [fullName])
     
