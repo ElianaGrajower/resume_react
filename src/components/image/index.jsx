@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 
 export default function UploadImage({handleChange}) {
-    const [image, setImage] = useState();
+    const [image, setImage] = useState('');
 
     function handleChangeImage(e) {
         console.log(e.target.files);
