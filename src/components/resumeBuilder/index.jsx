@@ -5,12 +5,14 @@ import Education from '../education';
 // import InputsContext from '../../context/input';
 import FullName from '../full_name';
 import DownloadPDF from '../pdf';
+import UploadImage from '../image';
 
 export default function ResumeBuilder() {
     const [inputs, setInputs] = useState({
         fullName: "",
         workExperience: [],
-        education: []
+        education: [],
+        image: ""
     });
 
     const handleChange = (obj, key) => {
@@ -33,12 +35,10 @@ export default function ResumeBuilder() {
                 <FullName handleChange={handleChange} />
                 <Typography>Work Experience</Typography>
                 <WorkExperience handleChange={handleChange} />
-                <button onClick={() => { <WorkExperience handleChange={handleChange} /> }}>add experience</button>
+                <button onClick={() => <WorkExperience handleChange={handleChange} />}>add experience</button>
                 <Typography>Education</Typography>
                 <Education handleChange={handleChange} />
-                {//TODO: input image!!
-                }
-                <img src="https://cdn.pixabay.com/photo/2014/04/03/10/32/businessman-310819_1280.png" width={50} height={50} alt="fill in" />
+                <UploadImage handleChange={handleChange} />
                 <Button type='submit'>Submit</Button>
             </form>
 

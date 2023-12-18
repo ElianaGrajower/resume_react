@@ -3,7 +3,7 @@ import html2pdf from 'html2pdf.js'
 import React, { useRef } from 'react';
 import { Button, Card, TextField, Typography } from '@mui/material'
 
-function DownloadPDF({inputs}) {
+function DownloadPDF({ inputs }) {
     const resumeRef = useRef();
 
     const handleDownload = () => {
@@ -28,6 +28,7 @@ function DownloadPDF({inputs}) {
             <div ref={resumeRef}>
                 <Card className='pdf' text-align='left'>
                     <h2>{inputs.fullName}</h2>
+                    {(inputs.image) ? <img src={inputs.image} alt="profile pic" width={100} height={100} /> : <></>}
                     <h3>Work Experience</h3>
                     <h4>{inputs.workExperience.companyName}</h4>
                     <h6>{inputs.workExperience.workTimeFrame}</h6>
@@ -36,7 +37,8 @@ function DownloadPDF({inputs}) {
                     <h6>{inputs.education.eduTimeFrame}</h6>
                 </Card>
             </div>
-                <button onClick={handleDownload}>Download PDF</button>
+            <br />
+            <button onClick={handleDownload}>Download PDF</button>
         </div>
     );
 }
