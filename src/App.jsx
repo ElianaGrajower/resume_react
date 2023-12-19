@@ -4,19 +4,25 @@ import viteLogo from '/vite.svg'
 import './App.css'
 import Home from './pages'
 import { Link, BrowserRouter, Route, Routes } from 'react-router-dom'
+import ResumeBuilder from './components/resumeBuilder'
 
 // import { Provider } from './context/input'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <>
-      {/* <BrowserRouter>
-        <Link to="/firebase"> firebase </Link>
-        <Route path='/firebase' element={<About />} />
-      </BrowserRouter> */}
-      <Home />
+      <BrowserRouter>
+        <Routes>
+          <Route>
+            <Route path='/' element={<Home />} />
+            <Route path='/resumebuilder' element={<ResumeBuilder/>}/>
+            {/* <Route path='/resumebuilder' element={<ResumeBuilder addResume={addResume} />} /> */}
+          </Route>
+        </Routes>
+
+      </BrowserRouter>
+      <Home/>
     </>
     // // <Provider>
     //   <Home/>

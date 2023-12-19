@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ResumeBuilder from '../components/resumeBuilder'
 
 //? !!!!!
@@ -9,11 +9,14 @@ import {
     getFirestore, collection, getDocs, addDoc, onSnapshot
 } from 'firebase/firestore'
 import {
-    getAuth, createUserWithEmailAndPassword
+    getAuth, createUserWithEmailAndPassword, signOut,
+    signInWithEmailAndPassword, onAuthStateChanged
 } from 'firebase/auth'
 import Register from '../components/login_logout/register'
 import Login from '../components/login_logout/login'
 import Logout from '../components/login_logout/logout'
+import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import ResumeInput from './resumeInput'
 
 const firebaseConfig = {
     apiKey: "AIzaSyCCF3mFhBT_s62ScwDFK8oMITY3stWO3aI",
@@ -53,7 +56,7 @@ onSnapshot(colRefRes, (snapshot) => {
 })
 
 const addResume = (data) => {
-    console.log(data);
+    // console.log(data);
     addDoc(colRefRes, {
         fullName: data['fullName'],
         workExperience: data['workExperience'],
@@ -65,11 +68,12 @@ const addResume = (data) => {
 const auth = getAuth()
 
 const signUpForm = (e) => {
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     createUserWithEmailAndPassword(auth, email, password)
         .then((cred) => {
-            console.log('user created:', cred.user);
+            // console.log('user created:', cred.user);
         })
         .catch((err) => {
             console.log(err.message);
@@ -77,37 +81,51 @@ const signUpForm = (e) => {
 }
 
 const loginForm = (e) => {
+    e.preventDefault();
     const email = e.target.email.value;
     const password = e.target.password.value;
     signInWithEmailAndPassword(auth, email, password)
         .then((cred) => {
-            console.log('user logged in:', cred.user);
+            // console.log('user logged in:', cred.user);
         })
         .catch((err) => {
             console.log(err.message);
         })
 }
 
-const logout = () =>{
+const logout = () => {
     signOut(auth)
-    .then(()=>{
-        console.log('The user signed out');
-    })
-    .catch((err)=>{
-        console.log(err.message);
-    })
+        .then(() => {
+            // console.log('The user signed out');
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
 }
+
+
+
 
 
 //? !!!!!
 
 export default function Home() {
+    const [loggedIn, setLoggedIn] = useState(false);
+
+    const authState = onAuthStateChanged(auth, (user) => {
+        console.log('user status changed:', user);
+        if (user) {
+            setLoggedIn(true);
+            
+        }
+        else setLoggedIn(false);
+    });
+
     return (
         <div>
-            <Register signUpForm={signUpForm}/>
-            <Login loginForm={loginForm}/>
-            <Logout logout={logout}/>
-            <ResumeBuilder addResume={addResume} />
+            {!loggedIn&&<Register signUpForm={signUpForm} />}
+            {!loggedIn&&<Login loginForm={loginForm} authState={authState} addResume={addResume} />}
+            {loggedIn&&<ResumeInput addResume={addResume} logout={logout}/>}
         </div>
     )
 }

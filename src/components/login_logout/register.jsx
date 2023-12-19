@@ -2,14 +2,14 @@ import { Button, TextField } from '@mui/material'
 import React from 'react'
 
 export default function Register({ signUpForm }) {
-    const submitHandler = (e) => {
-        e.preventDefault();
-        signUpForm(e);
-    }
+    // const submitHandler = (e) => {
+    //     e.preventDefault();
+    //     signUpForm(e);
+    // }
 
     return (
         <div>
-            <form onSubmit={submitHandler}>
+            <form onSubmit={signUpForm}>
                 <TextField
                     name='email'
                     type='email'
