@@ -64,7 +64,39 @@ const addResume = (data) => {
 
 const auth = getAuth()
 
+const signUpForm = (e) => {
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    createUserWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+            console.log('user created:', cred.user);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
+}
 
+const loginForm = (e) => {
+    const email = e.target.email.value;
+    const password = e.target.password.value;
+    signInWithEmailAndPassword(auth, email, password)
+        .then((cred) => {
+            console.log('user logged in:', cred.user);
+        })
+        .catch((err) => {
+            console.log(err.message);
+        })
+}
+
+const logout = () =>{
+    signOut(auth)
+    .then(()=>{
+        console.log('The user signed out');
+    })
+    .catch((err)=>{
+        console.log(err.message);
+    })
+}
 
 
 //? !!!!!
@@ -72,9 +104,9 @@ const auth = getAuth()
 export default function Home() {
     return (
         <div>
-            <Register auth={auth}/>
-            <Login auth={auth}/>
-            <Logout auth={auth}/>
+            <Register signUpForm={signUpForm}/>
+            <Login loginForm={loginForm}/>
+            <Logout logout={logout}/>
             <ResumeBuilder addResume={addResume} />
         </div>
     )

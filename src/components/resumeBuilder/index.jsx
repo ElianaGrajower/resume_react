@@ -109,7 +109,6 @@ export default function ResumeBuilder({addResume}) {
             </form>
 
             <DownloadPDF inputs={inputs} />
-            <Logout/>
         </div>
     )
 }
