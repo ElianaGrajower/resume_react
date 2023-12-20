@@ -78,9 +78,8 @@ export default function ResumeBuilder({ userId }) {
                 <form className='resForm' onSubmit={handleSubmit}>
                     <FullName handleChange={handleChange} reseting={reseting} />
                     <Typography>Work Experience</Typography>
-                    {/*<button onClick={() => <WorkExperience handleChange={handleChange} />}>add experience</button> */}
                     <WorkExperience handleChange={handleChange} reseting={reseting}/>
-                    {(experience)?.map((exp, index) => {
+                    {/* {(experience)?.map((exp, index) => {
                         console.log(exp);
                         return <WorkExperience
                             key={index}
@@ -88,7 +87,7 @@ export default function ResumeBuilder({ userId }) {
                             reseting={reseting}
                         />
                     })}
-                    <button onClick={handleAddExperience}>add experience</button>
+                    <button onClick={handleAddExperience}>add experience</button> */}
 
                     <Typography>Education</Typography>
                     <Education handleChange={handleChange} reseting={reseting} />

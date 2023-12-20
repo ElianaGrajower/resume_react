@@ -9,6 +9,7 @@ import {
     signInWithEmailAndPassword, onAuthStateChanged
 } from 'firebase/auth'
 import { Link, Route, Routes, useNavigate } from 'react-router-dom'
+import { getStorage } from "firebase/storage";
 
 const ResumeContext = createContext()
 
@@ -25,6 +26,7 @@ const firebaseConfig = {
 initializeApp(firebaseConfig)
 
 const db = getFirestore()
+
 const Provider = ({ children }) => {
 
 
@@ -135,3 +137,4 @@ const Provider = ({ children }) => {
 
 export { Provider }
 export default ResumeContext
+export const storage = getStorage();

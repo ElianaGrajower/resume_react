@@ -52,6 +52,7 @@ function DownloadPDF({ inputs }) {
                         avatar={
                             <Avatar className={classes.avatar}>
                                 {/* Add your image here */}
+                                {console.log(inputs.image)}
                                 <img
                                     src={inputs.image}
                                     alt={inputs.fullName}
