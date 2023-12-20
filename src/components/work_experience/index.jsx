@@ -3,13 +3,20 @@ import { Button, TextField, Typography } from '@mui/material'
 // import InputsContext from '../../context/input';
 
 
-export default function WorkExperience({handleChange}) {
+export default function WorkExperience({handleChange, reseting}) {
     // const { handleChange } = useContext(InputsContext);
 
     const [workExp, setWorkExp] = useState({
-        companyName: "",
-        workTimeFrame: ""
+        companyName: '',
+        workTimeFrame: ''
     });
+
+    useEffect(() => {
+        setWorkExp({
+            companyName: '',
+            workTimeFrame: ''
+        })
+      }, [reseting])
 
     const handleChangeWorkExp = (e) => {
         setWorkExp((prevState) => ({

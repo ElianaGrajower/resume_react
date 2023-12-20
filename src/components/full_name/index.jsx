@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import React, { useEffect, useState } from 'react'
 
-export default function FullName({handleChange}) {
+export default function FullName({handleChange, reseting}) {
     const [fullName, setFullName] = useState('');
 
     const handleChangeName = (e) => {
@@ -11,6 +11,10 @@ export default function FullName({handleChange}) {
     useEffect(() => {
         handleChange({ fullName: fullName }, 'fullName');
     }, [fullName])
+    
+    useEffect(() => {
+      setFullName('');
+    }, [reseting])
     
 
     return (

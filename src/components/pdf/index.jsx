@@ -28,6 +28,7 @@ function DownloadPDF({ inputs }) {
             <div ref={resumeRef}>
                 <Card className='pdf' text-align='left'>
                     <h2>{inputs.fullName}</h2>
+                    {console.log("image in pdf",inputs.image, inputs.fullName)}
                     {(inputs.image) ? <img src={inputs.image} alt="profile pic" width={100} height={100} /> : <></>}
                     <h3>Work Experience</h3>
                     <h4>{inputs.workExperience.companyName}</h4>
