@@ -1,0 +1,9 @@
+.allResumes{
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.eachResume{
+  width: 30%;
+  margin: 10px;
+}

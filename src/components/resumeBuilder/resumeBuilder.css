@@ -1,0 +1,32 @@
+/* styles.css */
+
+/* Container for the entire ResumeBuilder */
+.resumeBuilderContainer {
+    display: flex;
+    justify-content: space-between;
+    /* max-width: 2000px; */
+    min-width: 1100px;
+    margin: 0 auto;
+}
+
+/* Container for the form */
+.formContainer {
+    width: 45%;
+    /* Adjust the width as needed */
+    padding: 20px;
+}
+
+/* Container for the DownloadPDF section */
+.downloadPdfContainer {
+    width: 50%;
+    /* Adjust the width as needed */
+    padding: 20px;
+}
+
+.innerDisplayPdf {
+    
+}
+
+.pdf {
+    height: 500px;
+}

@@ -2,19 +2,19 @@ import { Button, Card, TextField, Typography } from '@mui/material'
 import React, { useContext, useEffect, useState } from 'react'
 import WorkExperience from '../work_experience';
 import Education from '../education';
-// import InputsContext from '../../context/input';
 import FullName from '../full_name';
 import DownloadPDF from '../pdf';
 import UploadImage from '../image';
-// import { v4 as uuid } from "uuid";
+import ResumeContext from '../../context/input';
+import './resumeBuilder.css'
 
 
-export default function ResumeBuilder({ addResume, userId }) {
-    // const unique_id = uuid();
+export default function ResumeBuilder({ userId }) {
+    const { addResume } = useContext(ResumeContext)
 
     const [inputs, setInputs] = useState({
         fullName: "",
-        workExperience: [{}],
+        workExperience: [],
         education: [],
         image: "",
         userID: userId
@@ -60,12 +60,12 @@ export default function ResumeBuilder({ addResume, userId }) {
     const resetForm = () => {
         setInputs({
             fullName: "",
-            workExperience: [{}],
+            workExperience: [],
             education: [],
             image: "",
             userID: userId
         });
-        setExperience([{}]);
+        setExperience([]);
         console.log("cleared?????");
         setReseting(!reseting);
     }
@@ -73,30 +73,35 @@ export default function ResumeBuilder({ addResume, userId }) {
     //TODO fix the work info!!!
 
     return (
-        <div>
-            <form className='resForm' onSubmit={handleSubmit}>
-                <FullName handleChange={handleChange} reseting={reseting}/>
-                <Typography>Work Experience</Typography>
-                {/* <WorkExperience handleChange={handleChange} /> */}
-                {/*<button onClick={() => <WorkExperience handleChange={handleChange} />}>add experience</button> */}
-                <button onClick={handleAddExperience}>add experience</button>
-                {(experience)?.map((exp, index) => {
-                    console.log(exp);
-                    return <WorkExperience
-                        key={index}
-                        handleChange={handleChange}
-                        reseting={reseting}
-                    />
-                })}
+        <div className="resumeBuilderContainer">
+            <div className="formContainer">
+                <form className='resForm' onSubmit={handleSubmit}>
+                    <FullName handleChange={handleChange} reseting={reseting} />
+                    <Typography>Work Experience</Typography>
+                    {/*<button onClick={() => <WorkExperience handleChange={handleChange} />}>add experience</button> */}
+                    <WorkExperience handleChange={handleChange} reseting={reseting}/>
+                    {(experience)?.map((exp, index) => {
+                        console.log(exp);
+                        return <WorkExperience
+                            key={index}
+                            handleChange={handleChange}
+                            reseting={reseting}
+                        />
+                    })}
+                    <button onClick={handleAddExperience}>add experience</button>
 
-                <Typography>Education</Typography>
-                <Education handleChange={handleChange} reseting={reseting}/>
-                <UploadImage handleChange={handleChange} reseting={reseting}/>
-                <Button type='submit'>Submit</Button>
-            </form>
-
-            <DownloadPDF inputs={inputs} />
-            <Button onClick={resetForm}>New Resume</Button>
+                    <Typography>Education</Typography>
+                    <Education handleChange={handleChange} reseting={reseting} />
+                    <UploadImage handleChange={handleChange} reseting={reseting} />
+                    <Button type='submit'>Submit</Button>
+                </form>
+            </div>
+            <div className="downloadPdfContainer">
+                <div className='innerDisplayPdf'>
+                    <DownloadPDF inputs={inputs} />
+                </div>
+                <Button onClick={resetForm}>New Resume</Button>
+            </div>
         </div>
     )
 }

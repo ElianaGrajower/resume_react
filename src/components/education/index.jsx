@@ -1,10 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react'
 import { Button, TextField, Typography } from '@mui/material'
-// import InputsContext from '../../context/input';
+
 
 export default function Education({handleChange, reseting}) {
-    // const { handleChange } = useContext(InputsContext);
-
+    
     const [edu, setEdu] = useState({
         eduName: "",
         eduTimeFrame: ""
